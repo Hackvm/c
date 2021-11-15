@@ -53,60 +53,46 @@ void main(){
     }while(choice!=6);
 }
 
-struct node * creat(struct node *first){
-    struct node *new_node, *ptr;
-    int num;
-    printf("Enter -1 to stop linked list\n");
-    printf("Enter the Data:");
-    scanf("%d",&num);
-    while (num!=-1){
-        new_node= (struct node*)(malloc(sizeof(struct node)));
-        new_node->data=num;
-
-        if(first==NULL){
-            new_node->next=NULL;
-            first=new_node;
-        }
-        else{
-            ptr=first;
-            while(ptr->next!=NULL)
-                ptr=ptr->next;
-                ptr->next=new_node;
-                new_node->next=NULL;
-            }
-            printf("Enter the data:");
-            scanf("%d",&num);
-        }
-        return first;
-
-}
-
 struct node * display(struct node * first){
     struct node *ptr;
     ptr=first;
-    while(ptr->next!=NULL){
+    while(ptr!=NULL){
         printf("\t%d",ptr->data);
         ptr=ptr->next;
     }
-    printf("\t%d",ptr->data);
+    //printf("\t%d",ptr->data);
     return first;
 }
 
 struct node * push(struct node * first){
-    struct node *ptr;
+    struct node *ptr,*p;
     int a;
+    ptr = (struct node *)(malloc(sizeof(struct node)));
     printf("Enter the Data:");
     scanf("%d",&a);
-    ptr = (struct node *)(malloc(sizeof(struct node)));
-    ptr->next=first;
     ptr->data=a;
-    return ptr;
+    if(first==NULL){
+        ptr->next=NULL;
+        first=ptr;
+        return ptr;
+    }
+    else{
+        p=first;
+        while(p->next!=NULL){
+            p=p->next;
+        }
+        p->next=ptr;
+        ptr->next=NULL;
+        return first;
+    }
+    //return first;
 }
 
 struct node *pop(struct node * first){
     struct node *ptr,*preptr;
     ptr=first;
-    first=first->next;
+    first=ptr->next;
+    printf("The Deleted Element is : %d",ptr->data);
     free(ptr);
     return first;
 }
@@ -118,4 +104,6 @@ struct node *peek(struct node * first){
         ptr=ptr->next;
     }
     printf("the peek valuse is %d",ptr->data);
+
+    return first;
 }

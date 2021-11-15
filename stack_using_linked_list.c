@@ -17,14 +17,14 @@ struct node *peek();
 void main(){
     int choice;
     do{
-    printf("\n1.To Create a Node.\n2.To Display Node.\n3.To use pop.\n4.To use push.\n5.To use peek.\n");
+    printf("\n1.To Usae Push.\n2.To Display Node.\n3.To use pop.\n4.To use peek.\n");
     printf("Enter Your Choice:");
     scanf("%d",&choice);
     switch(choice){
         case 1:
 
-        first = creat(first);
-        printf("The Stack is Created");
+        printf("\n------------------------Push in stack-----------------------------------\n");
+        first=push(first);
         break;
 
         case 2:
@@ -38,11 +38,6 @@ void main(){
         break;
 
         case 4:
-        printf("------------------------------Pushing in Stack------------------------\n");
-        first=push(first);
-        break;
-
-        case 5:
         printf("-------------------------------Peek node vaolue in stack--------------------\n");
         first = peek(first);
         break;
@@ -50,77 +45,65 @@ void main(){
         default:
         printf("------------------Enter the wrong choice----------------------\n");
         }
-    }while(choice!=6);
-}
-
-struct node * creat(struct node *first){
-    struct node *new_node, *ptr;
-    int num;
-    printf("Enter -1 to stop linked list\n");
-    printf("Enter the Data:");
-    scanf("%d",&num);
-    while (num!=-1){
-        new_node= (struct node*)(malloc(sizeof(struct node)));
-        new_node->data=num;
-
-        if(first==NULL){
-            new_node->next=NULL;
-            first=new_node;
-        }
-        else{
-            ptr=first;
-            while(ptr->next!=NULL)
-                ptr=ptr->next;
-                ptr->next=new_node;
-                new_node->next=NULL;
-            }
-            printf("Enter the data:");
-            scanf("%d",&num);
-        }
-        return first;
-
+    }while(choice!=5);
 }
 
 struct node * display(struct node * first){
     struct node *ptr;
+    if(first==NULL){
+        printf("Stack IS Empty\n");
+    }
+
+    else{
     ptr=first;
-    while(ptr->next!=NULL){
+    while(ptr!=NULL){
         printf("\t%d",ptr->data);
         ptr=ptr->next;
     }
-    printf("\t%d",ptr->data);
+    }
+    //printf("\t%d",ptr->data);
     return first;
 }
 
 struct node * push(struct node * first){
-    struct node *ptr,*p;
+    struct node *ptr;
     int a;
+    ptr=(struct node *)(malloc(sizeof(struct node)));
     printf("Enter the Data:");
     scanf("%d",&a);
-    p = (struct node *)(malloc(sizeof(struct node)));
-    p->data=a;
-    ptr=first;
-    while(ptr->next!=NULL){
-        ptr=ptr->next;
+    ptr->data=a;
+    if(first==NULL){
+        ptr->next=NULL;
+        first=ptr;
     }
-    ptr->next = p;
-    p->next=NULL;
+
+    else{
+        ptr->next=first;
+        first=ptr;
+    }
     return first;
 }
 
 struct node *pop(struct node * first){
     struct node *ptr,*preptr;
+    if(first==NULL){
+        printf("\nStack is Empty\n");
+    }
+    
     ptr=first;
     first=ptr->next;
+    printf("\n The Value being deleted is %d",ptr->data);
     free(ptr);
     return first;
 }
 
 struct node *peek(struct node * first){
     struct node *ptr;
-    ptr=first;
-    while(ptr->next!=NULL){
-        ptr=ptr->next;
+    if(first==NULL){
+        printf("\n Stack is Empty");
     }
-    printf("the peek valuse is %d",ptr->data);
+    else{
+    printf("the peek valuse is %d",first->data);
+    }
+    return first;
 }
