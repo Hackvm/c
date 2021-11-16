@@ -17,13 +17,13 @@ struct node *peek();
 void main(){
     int choice;
     do{
-    printf("\n1.To Create a Node.\n2.To Display Node.\n3.To use pop.\n4.To use push.\n5.To use peek.\n");
+    printf("\n1.To Insert an element.\n2.To Display Node.\n3.To Delete an Element.\n4.To use peek.\n");
     printf("Enter Your Choice:");
     scanf("%d",&choice);
     switch(choice){
         case 1:
 
-        first = creat(first);
+        first=push(first);
         printf("The Stack is Created");
         break;
 
@@ -38,11 +38,6 @@ void main(){
         break;
 
         case 4:
-        printf("------------------------------Pushing in Stack------------------------\n");
-        first=push(first);
-        break;
-
-        case 5:
         printf("-------------------------------Peek node vaolue in stack--------------------\n");
         first = peek(first);
         break;
@@ -50,7 +45,7 @@ void main(){
         default:
         printf("------------------Enter the wrong choice----------------------\n");
         }
-    }while(choice!=6);
+    }while(choice!=5);
 }
 
 struct node * display(struct node * first){

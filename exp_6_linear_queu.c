@@ -86,7 +86,7 @@ void display(){
         printf("\n Stack Underflow");
     }
     else{
-        for(i=front;i<=rear;i++){
+        for(i=front;i=>rear;i++){
             printf("\t%d",queue[i]);
         }
 
