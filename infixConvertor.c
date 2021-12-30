@@ -1,4 +1,6 @@
 #include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
 #define MAX 20
 
 int priority(char ch);
@@ -20,10 +22,10 @@ void main()
 {
 	char infix[50],postfix[50];
 	printf("Enter Intfix expression\n");
-	getw(infix);
+	gets(infix);
 	Infix_Postfix(infix,postfix);
 	printf("\nPostfix expression is\n");
-	puts(postfix);
+	printf("%s",postfix);
 }
 
 void Infix_Postfix(char infix[],char postfix[])
